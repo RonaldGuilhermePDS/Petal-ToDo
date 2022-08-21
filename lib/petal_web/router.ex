@@ -17,7 +17,7 @@ defmodule PetalWeb.Router do
   scope "/", PetalWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", TodoView
   end
 
   # Other scopes may use custom stacks.
