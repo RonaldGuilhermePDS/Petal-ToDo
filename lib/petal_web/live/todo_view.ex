@@ -1,13 +1,23 @@
 defmodule PetalWeb.TodoView do
   use PetalWeb, :live_view
 
+  alias Petal.Todos
+
+  def mount(_params, _session, socket) do
+    {:ok, assign(socket, todos: Todos.list_todos())}
+  end
+
   def render(assigns) do
     Phoenix.View.render(PetalWeb.PageView, "index.html", assigns)
   end
 
-  def handle_event("addToDo", _value, socket) do
-    IO.puts("addToDo")
+  def handle_event("add", %{"todo" => todo}, socket) do
+    Todos.create_todo(todo)
 
-    {:noreply, socket}
+    {:noreply, fetch(socket)}
+  end
+
+  defp fetch(socket) do
+    assign(socket, todos: Todos.list_todos())
   end
 end

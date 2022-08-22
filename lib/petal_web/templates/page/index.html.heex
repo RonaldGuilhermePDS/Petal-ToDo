@@ -7,32 +7,26 @@
     </.h1>
 
     <div class="mt-8 mb-8">
-      <.card class="bg-gray-200 my-2">
-        <.card_content category="Compras" heading="Tarefa A">
-          Descrição Tarefa A
-        </.card_content>
-      </.card>
-      <.card class="bg-gray-200 my-2">
-        <.card_content category="Compras" heading="Tarefa B">
-          Descrição Tarefa B
-        </.card_content>
-      </.card>
-      <.card class="bg-gray-200 my-2">
-        <.card_content category="Compras" heading="Tarefa C">
-          Descrição Tarefa C
-        </.card_content>
-      </.card>
+      <%= for todo <- @todos do %>
+        <.card class="m-2">
+          <.card_content>
+            <span class="text-transparent  font-bold bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+              <%= todo.title %>
+            </span>
+          </.card_content>
+        </.card>
+      <% end %>
     </div>
 
-    <form phx-submit="addToDo" class="flex">
+    <form phx-submit="add" class="flex">
       <div class="flex items-center bg-white rounded-md">
-        <Heroicons.Outline.search class="w-6 h-6 text-indigo-500 mx-2" />
-        <input name="nameToDo" placeholder="Nome da tarefa" class="h-10 rounded-md" />
+        <Heroicons.Outline.search class="w-6 h-6 text-purple-500 mx-2" />
+        <%= text_input :todo, :title, placeholder: "Nome da tarefa", class: "border-none rounded-lg" %>
       </div>
 
       <.button
         label="Adicionar Tarefa"
-        class="ml-4 bg-indigo-500"
+        class="ml-4 bg-purple-500"
       />
     </form>
   </div>
