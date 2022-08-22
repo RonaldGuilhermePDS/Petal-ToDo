@@ -24,11 +24,16 @@
       </.card>
     </div>
 
-    <.button
-      phx-click="addToDo"
-      color="primary"
-      variant="shadow"
-      label="Adicionar Tarefa"
-    />
+    <form phx-submit="addToDo" class="flex">
+      <div class="flex items-center bg-white rounded-md">
+        <Heroicons.Outline.search class="w-6 h-6 text-indigo-500 mx-2" />
+        <input name="nameToDo" placeholder="Nome da tarefa" class="h-10 rounded-md" />
+      </div>
+
+      <.button
+        label="Adicionar Tarefa"
+        class="ml-4 bg-indigo-500"
+      />
+    </form>
   </div>
 </div>
