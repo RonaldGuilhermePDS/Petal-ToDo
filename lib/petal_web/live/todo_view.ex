@@ -17,6 +17,12 @@ defmodule PetalWeb.TodoView do
     {:noreply, fetch(socket)}
   end
 
+  def handle_event("delete", %{"id" => id}, socket) do
+    todo = Todos.get_todo!(id)
+    Todos.delete_todo(todo)
+    {:noreply, fetch(socket)}
+  end
+
   def handle_event("toggle_done", %{"id" => id}, socket) do
     todo = Todos.get_todo!(id)
     Todos.update_todo(todo, %{done: !todo.done})
